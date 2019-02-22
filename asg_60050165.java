@@ -43,6 +43,9 @@ class asg_60050165 extends asg_3{
 	  skyyellow_layer38_color21(g);
 	  skyyellow_layer39_color21(g);
 	  skyyellow_layer40_color22(g);
+	  base_layer1_color23_24(g);
+	  monument(g);
+	  cloud_color26(g);
 
 	  
     }//consutor
@@ -454,7 +457,7 @@ class asg_60050165 extends asg_3{
 		   DrawPoly(g2,new int[][] { {450,570},{500,570},{475,600}},set_CG(color));
 		   DrawPoly(g2,new int[][] { {500,570},{600,570},{550,600}},set_CG(color));
    }//skyyellow_layer39_color21
-      private void skyyellow_layer40_color22(Graphics g){ //draw skyyellow_layer40_color22
+   private void skyyellow_layer40_color22(Graphics g){ //draw skyyellow_layer40_color22
 		int color=22;
 		Graphics2D g2 = (Graphics2D) g;
 		   DrawPoly(g2,new int[][] { {0,600},{20,600},{0,570}},set_CG(color));
@@ -464,7 +467,48 @@ class asg_60050165 extends asg_3{
 		   DrawPoly(g2,new int[][] { {475,600},{550,600},{500,570}},set_CG(color));
 		   DrawPoly(g2,new int[][] { {550,600},{600,600},{600,570}},set_CG(color));
    }//skyyellow_layer40_color22
+   private void base_layer1_color23_24(Graphics g){ //draw and fillcolor base_layer1
+		int color=23; 
+		   fillcolorX(g,set_CG(color), 200,510,400,510,600);
+		   fillcolorX(g,set_CG(24), 200,510,400,510,520);
+   }//base_layer1_color23_24
+   private void monument(Graphics g){ //draw monument
+	       fillcolorX(g,set_CG(0),340,120,350,120,508);
+		   fillcolorX(g,set_CG(0),250,220,340,120,508);
+		   //paint base1
+		   fillcolorX(g,set_CG(1),250,220,340,120,508);
+		   fillcolorX(g,set_CG(0),250,260,340,200,508);
+		   fillcolorX(g,set_CG(25),250,300,340,240,508);
+		   fillcolorX(g,set_CG(0),250,400,340,350,508);
+		   fillcolorX(g,set_CG(1),250,450,340,400,508);
+		   //paint base2
+		   fillcolorX(g,set_CG(1),340,120,350,120,200);
+		   fillcolorX(g,set_CG(25),340,350,350,350,240);
+		   fillcolorX(g,set_CG(1),340,400,350,400,508);
+   }//monument
+   private void cloud_color26(Graphics g){ //draw cloud
+	   int color=26;
+	   Graphics2D g2 = (Graphics2D) g;
+	       //cloud left
+	       midpointCircle(g, g2, addP(50,50),20,set_CG(color));
+		   midpointCircle(g, g2, addP(80,30),20,set_CG(color));
+		   midpointCircle(g, g2, addP(110,30),20,set_CG(color));
+		   midpointCircle(g, g2, addP(140,30),20,set_CG(color));
+		   midpointCircle(g, g2, addP(170,50),20,set_CG(color));
+		   midpointCircle(g, g2, addP(80,50),20,set_CG(color));
+		   midpointCircle(g, g2, addP(110,50),20,set_CG(color));
+		   midpointCircle(g, g2, addP(140,50),20,set_CG(color));
+		   //cloud right
+		   midpointCircle(g, g2, addP(550,50),20,set_CG(color));
+		   midpointCircle(g, g2, addP(520,30),20,set_CG(color));
+		   midpointCircle(g, g2, addP(490,30),20,set_CG(color));
+		   midpointCircle(g, g2, addP(460,30),20,set_CG(color));
+		   midpointCircle(g, g2, addP(430,50),20,set_CG(color));
+		   midpointCircle(g, g2, addP(520,50),20,set_CG(color));
+		   midpointCircle(g, g2, addP(490,50),20,set_CG(color));
+		   midpointCircle(g, g2, addP(460,50),20,set_CG(color));
 
+   }
 
 
 

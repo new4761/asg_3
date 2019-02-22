@@ -98,6 +98,18 @@ class asg_3 extends JPanel {
 		case 22:
             num_Color = (new Color(249, 195, 17));// color 22 skyyellow 22
             break;
+		case 23:
+            num_Color = (new Color(224, 202, 172));// color 23 base
+            break;
+		case 24:
+            num_Color = (new Color(224, 210, 190));// color 24 topbase
+            break;
+		case 25:
+            num_Color = (new Color(15, 7, 244));// color 25 bluemonument
+            break;
+		case 26:
+            num_Color = (new Color(105,105,105));// color 26 blackcloud
+            break;
         default:
             num_Color = (new Color(255, 255, 255)); // white color
         }
@@ -176,5 +188,134 @@ class asg_3 extends JPanel {
             }
         }
     }
+    // fillcolor only 1y
+    public void fillcolorX(Graphics g, Color c, int x1, int y1, int x2, int y2, int y3) {
+        int d = 0;
+        int dx = Math.abs(x2 - x1);
+        int dy = Math.abs(y2 - y1);
+        int dx2 = 2 * dx;
+        int dy2 = 2 * dy;
+        int ix = x1 < x2 ? 1 : -1;
+        int iy = y1 < y2 ? 1 : -1;
+        int x = x1;
+        int y = y1;
 
+        if (dx >= dy) {
+            while (true) {
+                Bresenham(g, c, x, y3, x, y);
+                if (x == x2)
+                    break;
+                x += ix;
+                d += dy2;
+                if (d > dx) {
+                    y += iy;
+                    d -= dx2;
+                }
+            }
+        } else {
+            while (true) {
+                Bresenham(g, c, x, y3, x, y);
+                if (y == y2)
+                    break;
+                y += iy;
+                d += dx2;
+                if (d > dy) {
+                    x += ix;
+                    d -= dy2;
+                }
+            }
+        }
+
+    }
+	// draw line
+    public void Bresenham(Graphics g, Color c, int x1, int y1, int x2, int y2) {
+        int d = 0;
+
+        int dx = Math.abs(x2 - x1);
+        int dy = Math.abs(y2 - y1);
+
+        int dx2 = 2 * dx;
+        int dy2 = 2 * dy;
+
+        int ix = x1 < x2 ? 1 : -1;
+        int iy = y1 < y2 ? 1 : -1;
+
+        int x = x1;
+        int y = y1;
+
+        if (dx >= dy) {
+            while (true) {
+                plot(g, c, x, y);
+                if (x == x2)
+                    break;
+                x += ix;
+                d += dy2;
+                if (d > dx) {
+                    y += iy;
+                    d -= dx2;
+                }
+            }
+        } else {
+            while (true) {
+                plot(g, c, x, y);
+                if (y == y2)
+                    break;
+                y += iy;
+                d += dx2;
+                if (d > dy) {
+                    x += ix;
+                    d -= dy2;
+                }
+            }
+        }
+
+    }
+    // draw line with size
+    public void Bresenham(Graphics g, Color c, int x1, int y1, int x2, int y2 ,int size) {
+        int d = 0;
+
+        int dx = Math.abs(x2 - x1);
+        int dy = Math.abs(y2 - y1);
+
+        int dx2 = 2 * dx;
+        int dy2 = 2 * dy;
+
+        int ix = x1 < x2 ? 1 : -1;
+        int iy = y1 < y2 ? 1 : -1;
+
+        int x = x1;
+        int y = y1;
+
+        if (dx >= dy) {
+            while (true) {
+                plot(g, c, x, y,size,size);
+                if (x == x2)
+                    break;
+                x += ix;
+                d += dy2;
+                if (d > dx) {
+                    y += iy;
+                    d -= dx2;
+                }
+            }
+        } else {
+            while (true) {
+                plot(g, c, x, y,size,size);
+                if (y == y2)
+                    break;
+                y += iy;
+                d += dx2;
+                if (d > dy) {
+                    x += ix;
+                    d -= dy2;
+                }
+            }
+        }
+
+    }
 }
+
+
+
+
+
