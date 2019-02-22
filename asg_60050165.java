@@ -1,6 +1,6 @@
 import java.awt.*;
 import javax.swing.*;
-class asg_60050165 extends asg_2{
+class asg_60050165 extends asg_3{
 	asg_60050165(Graphics g){	
 	  //plot(g,set_CG(13),0,0,600,300);
 	  sky_layer1_color1(g);
