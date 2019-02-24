@@ -5,7 +5,7 @@ import java.util.Queue;
 
 import javax.swing.*;
 
-class asg_3 extends JPanel {
+class asg_3 extends JPanel implements Runnable {
     public static void main(String[] args) {
         asg_3 m = new asg_3();
         JFrame f = new JFrame();
@@ -14,19 +14,71 @@ class asg_3 extends JPanel {
         f.setSize(600, 600);
         f.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         f.setVisible(true);
-
+        (new Thread(m)).start();
     }
 
     public void paintComponent(Graphics g) {
 
         Graphics2D g2 = (Graphics2D) g;
 
-        // DrawPoly(g2, new int[][] { { 30, 30 }, { 213, 572 }, { 132, 312 } },
-        // Color.black); draw poly
-        // midpointCircle(g, g2, addP(200, 200), 30, Color.black);
         asg_60050165 j = new asg_60050165(g); // Draw Work From 600165
-        //asg_60050143 n = new asg_60050143(g); // Draw Work From 600143
+        // asg_60050143 n = new asg_60050143(g); // Draw Work From 600143
 
+        // asg_60050143 work from here
+        int x = 0, y = 0;
+        int x2 = 900, y2 = 900, r2 = 110;
+
+        g2.rotate(r2, x2, y2);
+        g2.setColor(new Color(255, 67, 30));
+        g2.fillOval(x2, y2, (int) boomsize, (int) boomsize);
+        g2.setColor(new Color(234, 167, 107));
+        g2.fillOval(x2, y2, (int) boomsize - 20, (int) boomsize - 20);
+        g2.setColor(Color.white);
+        g2.fillOval(x2, y2, (int) boomsize - 100, (int) boomsize - 100);
+        g2.rotate(-r2, x2, y2);
+        g2.setColor(new Color(150, 86, 36));
+        g2.translate(circleMove, circleMove);
+
+        g2.rotate(10, x, y);
+        g2.fillOval(x, y, (int) circleMove / 5 + 20, (int) circleMove / 5 + 10);
+        g2.translate(-circleMove, -circleMove);
+
+        System.out.println(seconds);
+    }
+
+    // animation
+    double startTime = System.currentTimeMillis();
+    double circleMove = 0;
+    double boomsize = 0;
+    int seconds;
+
+    public void run() {
+        double lastTime = System.currentTimeMillis();
+        double currentTime, elapsedTime;
+
+        while (true) {
+            currentTime = System.currentTimeMillis();
+            elapsedTime = currentTime - lastTime;
+
+            // TODO: update logics
+            // Displayx
+            seconds = (int) ((currentTime - startTime) / 1000);
+            double temp = 120.0 * elapsedTime / 1000.0;
+            // circleSize += 0.25;
+            circleMove += temp;
+            repaint();
+            lastTime = currentTime;
+            if (seconds > 5) {
+                boomsize += temp + 3;
+            }
+            // take a little nap: 60fps
+            try {
+                Thread.sleep(1000 / 60);
+
+            } catch (InterruptedException e) {
+                System.err.println(e);
+            }
+        }
     }
 
     public Color set_CG(int num) { // setColorGroup
@@ -71,44 +123,44 @@ class asg_3 extends JPanel {
         case 13:
             num_Color = (new Color(249, 238, 202));// color 13 skyyellow 13
             break;
-		case 14:
+        case 14:
             num_Color = (new Color(249, 234, 182));// color 14 skyyellow 14
             break;
-		case 15:
+        case 15:
             num_Color = (new Color(249, 229, 162));// color 15 skyyellow 15
             break;
-		case 16:
+        case 16:
             num_Color = (new Color(249, 225, 147));// color 16 skyyellow 16
             break;
-		case 17:
+        case 17:
             num_Color = (new Color(249, 222, 132));// color 17 skyyellow 17
             break;
-		case 18:
+        case 18:
             num_Color = (new Color(249, 218, 117));// color 18 skyyellow 18
             break;
-		case 19:
+        case 19:
             num_Color = (new Color(249, 213, 94));// color 19 skyyellow 19
             break;
-		case 20:
+        case 20:
             num_Color = (new Color(249, 207, 69));// color 20 skyyellow 20
             break;
-		case 21:
+        case 21:
             num_Color = (new Color(249, 202, 47));// color 21 skyyellow 21
             break;
-		case 22:
+        case 22:
             num_Color = (new Color(249, 195, 17));// color 22 skyyellow 22
             break;
-		case 23:
+        case 23:
             num_Color = (new Color(224, 202, 172));// color 23 base
             break;
-		case 24:
+        case 24:
             num_Color = (new Color(224, 210, 190));// color 24 topbase
             break;
-		case 25:
+        case 25:
             num_Color = (new Color(15, 7, 244));// color 25 bluemonument
             break;
-		case 26:
-            num_Color = (new Color(105,105,105));// color 26 blackcloud
+        case 26:
+            num_Color = (new Color(105, 105, 105));// color 26 blackcloud
             break;
         default:
             num_Color = (new Color(255, 255, 255)); // white color
@@ -188,6 +240,7 @@ class asg_3 extends JPanel {
             }
         }
     }
+
     // fillcolor only 1y
     public void fillcolorX(Graphics g, Color c, int x1, int y1, int x2, int y2, int y3) {
         int d = 0;
@@ -227,7 +280,8 @@ class asg_3 extends JPanel {
         }
 
     }
-	// draw line
+
+    // draw line
     public void Bresenham(Graphics g, Color c, int x1, int y1, int x2, int y2) {
         int d = 0;
 
@@ -270,8 +324,9 @@ class asg_3 extends JPanel {
         }
 
     }
+
     // draw line with size
-    public void Bresenham(Graphics g, Color c, int x1, int y1, int x2, int y2 ,int size) {
+    public void Bresenham(Graphics g, Color c, int x1, int y1, int x2, int y2, int size) {
         int d = 0;
 
         int dx = Math.abs(x2 - x1);
@@ -288,7 +343,7 @@ class asg_3 extends JPanel {
 
         if (dx >= dy) {
             while (true) {
-                plot(g, c, x, y,size,size);
+                plot(g, c, x, y, size, size);
                 if (x == x2)
                     break;
                 x += ix;
@@ -300,7 +355,7 @@ class asg_3 extends JPanel {
             }
         } else {
             while (true) {
-                plot(g, c, x, y,size,size);
+                plot(g, c, x, y, size, size);
                 if (y == y2)
                     break;
                 y += iy;
@@ -314,8 +369,3 @@ class asg_3 extends JPanel {
 
     }
 }
-
-
-
-
-
