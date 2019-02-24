@@ -21,7 +21,7 @@ class Assignment3 extends JPanel implements Runnable {
 
         Graphics2D g2 = (Graphics2D) g;
 
-        asg_60050165 j = new asg_60050165(g); // Draw Work From 600165
+        Assignment3_60050165 j = new Assignment3_60050165(g); // Draw Work From 600165
         // asg_60050143 n = new asg_60050143(g); // Draw Work From 600143
 
         // asg_60050143 work from here
